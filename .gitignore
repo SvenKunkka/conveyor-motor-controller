@@ -1,0 +1,16 @@
+# Local dependencies and generated caches
+.venv/
+firmware/.pio/
+__pycache__/
+*.pyc
+.DS_Store
+.env
+.env.*
+# Hardware sessions may contain personal identifiers/NVS. Never publish by default.
+verification/flash-*/
+verification/*backup*
+verification/*.log
+verification/*.jsonl
+!verification/physical-observations.jsonl
+verification/safety-*
+verification/target-*.tmp

@@ -1,0 +1,19 @@
+# Selected sanitized excerpt; time zone Asia/Shanghai; 2026-10-19
+16:39:21  TX {"cmd":"motor","action":"reverse","speed":30}
+16:39:21  STATE 正转 · 顺时针 [raw=reverse] · target=正转 · 顺时针 [raw=reverse] · 30% · armed=true · locked=false · running
+16:39:21  ACK #2038 OK · 正转 · 顺时针 [raw=reverse] · target=正转 · 顺时针 [raw=reverse] · 30%
+16:39:21  TX {"cmd":"motor","action":"stop"}
+16:39:21  STATE 停止 [raw=stopped] · target=停止 [raw=stopped] · 0% · armed=true · locked=false · user_stop
+16:39:21  ACK #2040 OK · 停止 [raw=stopped] · target=停止 [raw=stopped] · 0%
+16:39:21  TX {"cmd":"disarm"}
+16:39:21  STATE 停止 [raw=stopped] · target=停止 [raw=stopped] · 0% · armed=false · locked=false · user_disarm
+16:39:21  ACK #2043 OK · 停止 [raw=stopped] · target=停止 [raw=stopped] · 0%
+16:39:51  TX {"cmd":"motor","action":"forward","speed":30}
+16:39:51  STATE 反转 · 逆时针 [raw=forward] · target=反转 · 逆时针 [raw=forward] · 30% · armed=true · locked=false · running
+16:39:51  ACK #2192 OK · 反转 · 逆时针 [raw=forward] · target=反转 · 逆时针 [raw=forward] · 30%
+16:39:51  TX {"cmd":"motor","action":"stop"}
+16:39:51  STATE 停止 [raw=stopped] · target=停止 [raw=stopped] · 0% · armed=true · locked=false · user_stop
+16:39:51  ACK #2195 OK · 停止 [raw=stopped] · target=停止 [raw=stopped] · 0%
+16:39:51  TX {"cmd":"disarm"}
+16:39:51  STATE 停止 [raw=stopped] · target=停止 [raw=stopped] · 0% · armed=false · locked=false · user_disarm
+16:39:51  ACK #2197 OK · 停止 [raw=stopped] · target=停止 [raw=stopped] · 0%

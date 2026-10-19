@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#183c34">
+  <title>Conveyor Motor Controller</title>
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+  <aside class="sidebar" aria-label="控制台导航">
+    <a class="brand-mark" href="#console" aria-label="Conveyor Motor Controller 主页">
+      <svg viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M9 12h18a6 6 0 0 1 0 12H9a6 6 0 0 1 0-12Z" stroke="currentColor" stroke-width="2"/><circle cx="10" cy="18" r="2.5" fill="currentColor"/><circle cx="26" cy="18" r="2.5" fill="currentColor"/><path d="M17 8v5m5-5v5M17 23v5m5-5v5" stroke="currentColor" stroke-width="2"/></svg>
+    </a>
+    <div class="side-divider"></div>
+    <a class="side-link active" href="#console" aria-current="page"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 17.5h7M17.5 14v7"/></svg><span>控制台</span></a>
+    <div class="side-foot"><span class="side-usb">USB</span><span>WORKBENCH<br>01 / N20</span></div>
+  </aside>
+  <main id="console">
+    <header class="topbar">
+      <div class="title-block"><p class="eyebrow">CONVEYOR MOTOR CONTROLLER</p><h1>传送带电机控制台<span class="title-tag">N20 / ATOMS3</span></h1></div>
+      <div class="topbar-actions"><span class="badge" id="connection" role="status">● 离线</span><button id="connect" class="connect-button"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7 2v5m6-5v5M5 7h10v3a5 5 0 0 1-10 0V7Zm5 8v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>连接设备</button></div>
+    </header>
+    <div class="notice" id="notice" role="status">连接后读取真实设备状态，手动启用控制后可运行。</div>
+    <div class="dashboard">
+      <section class="panel control-panel" aria-labelledby="controlTitle">
+        <div class="section-head"><div><p class="section-kicker">MOTOR CONTROL</p><h2 id="controlTitle">电机控制</h2></div><span class="state-pill" id="armedLabel">控制未启用</span></div>
+        <div class="output-status">
+          <div class="motor-visual" id="outputVisual" data-mode="offline" data-connected="false" data-locked="false" aria-hidden="true">
+            <svg class="motor-illustration" viewBox="0 0 120 120" fill="none"><circle class="visual-outer" cx="60" cy="60" r="52"/><circle class="visual-inner" cx="60" cy="60" r="43"/><path class="visual-ticks" d="M60 3v5m0 104v5M3 60h5m104 0h5M20 20l4 4m72 72 4 4M20 100l4-4m72-72 4-4"/><rect class="motor-body" x="34" y="41" width="43" height="38" rx="7"/><path class="motor-detail" d="M77 51h11v18H77M30 49h4m-4 22h4M45 42v36m19-36v36M88 60h11"/><path class="motor-spark" d="m57 51-7 11h9l-6 9"/></svg>
+            <span class="visual-dot"></span>
+          </div>
+          <div class="output-copy"><span class="field-label">设备输出状态</span><strong id="mode">未连接</strong><p id="reasonText">等待设备连接</p></div>
+          <div class="output-reading"><span class="field-label">固件回报 PWM</span><div><b id="actual">—</b><span>%</span></div><span class="reading-foot">输出指令 · 非转速测量</span></div>
+        </div>
+        <div class="output-strip"><span>控制输出示意</span><div class="output-track" aria-hidden="true"><span id="outputBar"></span></div><span>100%</span></div>
+        <div class="run-buttons">
+          <button id="forward" class="direction-button" disabled><svg viewBox="0 0 26 26" fill="none" aria-hidden="true"><path d="M20 10a8 8 0 1 0 .5 6M20 10V4m0 6h-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>正转<small>顺时针 · CW</small></span></button>
+          <button id="stop" class="stop-button" disabled><svg viewBox="0 0 26 26" fill="none" aria-hidden="true"><rect x="6" y="6" width="14" height="14" rx="2" fill="currentColor"/></svg><span>停止<small>STOP</small></span></button>
+          <button id="reverse" class="direction-button" disabled><svg viewBox="0 0 26 26" fill="none" aria-hidden="true"><path d="M6 10a8 8 0 1 1-.5 6M6 10V4m0 6h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>反转<small>逆时针 · CCW</small></span></button>
+        </div>
+        <p class="direction-note" id="directionCalibration">方向以电机输出轴端视角为准，最终方向以现场观察确认。</p>
+        <div class="arm-row"><button id="arm" class="secondary" disabled>启用控制</button><button id="disarm" class="secondary" disabled>停用控制</button><button id="unlock" class="quiet" disabled>解除急停锁定</button></div>
+        <p class="control-steps"><span>1 连接设备</span><i>→</i><span>2 启用控制</span><i>→</i><span>3 选择方向</span></p>
+        <button id="emergency" class="emergency" disabled><svg viewBox="0 0 25 25" fill="none" aria-hidden="true"><path d="m8 2 9 .1 6 6v9l-6 6H8l-6-6v-9l6-6Z" stroke="currentColor" stroke-width="1.6"/><path d="M12.5 7v7m0 3h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>紧急停止<small>停止输出并锁定</small></span><span class="emergency-en">EMERGENCY STOP <kbd>Esc</kbd></span></button>
+        <p class="safety-note">软件急停不能替代硬件断电。此处显示固件指令；未配备编码器、电流或温度传感器。</p>
+      </section>
+      <section class="panel duty-panel" aria-labelledby="dutyTitle">
+        <div class="section-head"><div><p class="section-kicker">PWM DUTY</p><h2 id="dutyTitle">设置占空比</h2></div><span class="small-tag">开环控制</span></div>
+        <label class="field-label" for="speed">请求占空比</label>
+        <div class="speed-number"><input id="speed" type="number" min="0" max="100" step="1" value="30" inputmode="numeric" aria-label="PWM 占空比百分比"><span>%</span><span class="request-label">REQUEST</span></div>
+        <label for="slider" class="sr-only">设置 PWM 占空比</label><input id="slider" type="range" min="0" max="100" step="1" value="30">
+        <div class="range-label"><span>0%</span><span id="limit">固件上限 30% · 待读取</span><span>100%</span></div>
+        <div class="duty-preview"><div><span>限幅后请求预览</span><p>启动后由固件确认实际输出</p></div><strong id="dutyPreview">30%</strong></div>
+        <p class="duty-hint" id="dutyHint">已知实测配置：1kHz / 30%。设备上限以连接后读取为准。</p>
+        <dl class="stats"><div><dt>目标方向</dt><dd id="target">—</dd></div><div><dt>最近运行时长</dt><dd id="runtime">—</dd></div><div><dt>PWM 频率</dt><dd id="freqStatus">—</dd></div><div><dt>固件连接</dt><dd id="linkStatus">未验证</dd></div></dl>
+        <p class="duty-footnote">0–100% 表示 PWM 请求，超过设备上限会限幅。无编码器，页面不显示实际 RPM。</p>
+      </section>
+    </div>
+    <section class="profile-strip" aria-label="已知实测配置">
+      <div class="profile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="profile-copy"><strong>实机起转配置</strong><span>USB 直插 Mac · 空载短时已起转并停止</span></div>
+      <div class="profile-values"><span><b>1</b> kHz</span><span><b>30</b>% PWM</span></div>
+      <span class="profile-match" id="profileMatch" data-state="offline">等待设备参数</span>
+      <button id="applyProfile" class="secondary">填入实测配置</button>
+      <p class="profile-footnote">20kHz / 30% 未起转。此记录不代表持续带载能力；“填入”只修改下方表单。</p>
+    </section>
+    <section class="detail-stack" aria-label="设备详细信息">
+      <details class="detail-panel">
+        <summary><div><span class="detail-index">01</span><h2>连接与设备</h2><span class="detail-caption">串口、固件与通信状态</span></div><svg class="chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m6 8 4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <div class="detail-content"><div class="connect-row"><label>连接方式<select id="transport"><option value="serial">USB 直连 · Web Serial</option><option value="relay">本机串口服务 · Python</option></select></label><label id="portLabel" hidden>串口<select id="ports"><option value="">请刷新串口</option></select></label><button id="refresh" class="secondary">刷新串口</button><button id="reconnect" class="secondary">重新连接</button><button id="disconnect" class="quiet" disabled>断开</button></div><p class="fine" id="transportHint">正在检测浏览器</p><dl class="device-meta"><div><dt>串口设备</dt><dd id="device">—</dd></div><div><dt>固件版本</dt><dd id="firmware">—</dd></div><div><dt>最近一次通信</dt><dd id="lastSeen">—</dd></div><div><dt>固件状态原因</dt><dd id="reason">等待固件状态</dd></div></dl></div>
+      </details>
+      <details class="detail-panel">
+        <summary><div><span class="detail-index">02</span><h2>设备参数</h2><span class="detail-caption">停止并停用控制后可保存</span></div><svg class="chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m6 8 4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <div class="detail-content"><form id="settings"><div class="settings-grid"><label>PWM 频率 / Hz<input name="frequency" type="number" min="1000" max="40000" step="1" value="1000" required></label><label>默认启动占空比 / %<input name="defaultDuty" type="number" min="0" max="100" step="1" value="30" required></label><label>最大占空比 / %<input name="maxDuty" type="number" min="1" max="100" step="1" value="30" required></label><label>正反转换向等待 / ms<input name="reverseDelayMs" type="number" min="100" max="5000" step="1" value="300" required></label><label>控制命令超时 / ms<input name="timeoutMs" type="number" min="500" max="10000" step="1" value="1500" required></label><label class="check"><input name="stopOnDisconnect" type="checkbox" checked><span>连接断开时立即停止<small>通信超时保护始终生效</small></span></label></div><div class="form-footer"><p class="fine">连接时读取设备参数。保存后写入 NVS，重启仍生效；运行状态不会保存。</p><button id="readSettings" type="button" class="secondary" disabled>读取设备参数</button><button id="save" type="submit" disabled>应用并保存到设备</button></div></form></div>
+      </details>
+      <details class="detail-panel log-panel">
+        <summary><div><span class="detail-index">03</span><h2>通信记录</h2><span class="detail-caption">操作指令与固件确认</span></div><svg class="chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m6 8 4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <div class="detail-content"><div class="log-toolbar"><p class="fine">保留最近操作，可导出完整记录用于排查。</p><button id="export" class="secondary">导出记录</button></div><pre id="log" aria-label="通信记录" tabindex="0"></pre></div>
+      </details>
+    </section>
+    <footer><span class="footer-brand">CONVEYOR LAB <span>/</span> USB MOTOR WORKBENCH</span><span>控制页面 <b id="uiVersion">UI 2.0.0</b><span class="footer-sep">·</span>固件版本以设备回报为准</span></footer>
+  </main>
+  <script type="module" src="/src/app.js"></script>
+</body>
+</html>

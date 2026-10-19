@@ -1,0 +1,111 @@
+{
+  "date": "2026-10-19",
+  "timezone": "Asia/Shanghai",
+  "ui_version": "2.0.0",
+  "firmware": "conveyor-1.0.0",
+  "unit_tests": {
+    "node": 23,
+    "failed": 0
+  },
+  "desktop": {
+    "width": 1665,
+    "scroll_width": 1665,
+    "real_device_connection": "Web Serial, prior permission reused",
+    "firmware_output_duty": 0,
+    "armed": false,
+    "profile": "frequency1000/default30/max30, device reported match"
+  },
+  "input_checks": {
+    "requested71": "preview30, actual0",
+    "empty": "direction buttons disabled even when armed, actual0",
+    "decimal30_5": "rejected, actual0",
+    "value101": "rejected, actual0"
+  },
+  "safety_checks": {
+    "escape": "real emergency ACK, locked and duty0",
+    "unlock": "stopped and unarmed",
+    "reconnect": "stopped and unarmed"
+  },
+  "settings_checks": {
+    "form20000": "device profile still1000 until save",
+    "load_profile": "form only,1000/30/30",
+    "save": "same working parameters saved and acknowledged; no motion"
+  },
+  "mobile_layout": {
+    "tool": "Chrome device toolbar, iPhone16 preset",
+    "width": 393,
+    "height": 852,
+    "scroll_width": 393,
+    "actual_phone_test": false
+  },
+  "page_errors_after_reload": 0,
+  "new_motor_run_commands": false,
+  "screenshots": [
+    "ui-v2-desktop.png",
+    "ui-v2-mobile.png",
+    "ui-v2-limit-preview.png",
+    "ui-v2-direction-confirmed.png"
+  ],
+  "motor_physical_scope": "Initial UI2 delivery tested output0; subsequent 16:39 marked-shaft tests confirmed logical forward CW, logical reverse CCW, and stop for both. USB-only, unloaded short pulses; sustained/load/current/temperature tests not performed.",
+  "new_motor_run_commands_scope": "Initial UI2 delivery acceptance only; subsequent marked-shaft physical acceptance is recorded separately below.",
+  "subsequent_physical_acceptance": {
+    "date": "2026-10-19",
+    "timezone": "Asia/Shanghai",
+    "method": "user applied visible shaft-end mark and observed from the same output shaft end",
+    "frequency": 1000,
+    "duty": 30,
+    "duration_ms_approx_each": 300,
+    "firmware_or_settings_changed": false,
+    "tests": [
+      {
+        "time": "2026-10-19T16:39:21+08:00",
+        "logical_direction": "forward",
+        "raw_direction": "reverse",
+        "user_observation": "顺时针转动，随后停止",
+        "running_ack": 2038,
+        "stop_ack": 2040,
+        "disarm_ack": 2043,
+        "result": "physical clockwise rotation and subsequent stop confirmed by user",
+        "frequency": 1000,
+        "duty": 30,
+        "duration_ms_approx": 300,
+        "control": "web UI2.0.0",
+        "setup": "direct Mac USB; ATOMS3 5V to VM; empty secured motor with visible shaft-end mark",
+        "view": "looking directly at the output shaft end, same view for both tests",
+        "source": "user现场确认, combined with firmware ACK",
+        "running_output_duty": 30,
+        "stopped_output_duty": 0,
+        "log": "ui-v2-marked-direction-log.txt",
+        "screenshot": "ui-v2-direction-confirmed.png"
+      },
+      {
+        "time": "2026-10-19T16:39:51+08:00",
+        "logical_direction": "reverse",
+        "raw_direction": "forward",
+        "user_observation": "是，逆时针转动后停止",
+        "running_ack": 2192,
+        "stop_ack": 2195,
+        "disarm_ack": 2197,
+        "result": "physical counterclockwise rotation and subsequent stop confirmed by user",
+        "frequency": 1000,
+        "duty": 30,
+        "duration_ms_approx": 300,
+        "control": "web UI2.0.0",
+        "setup": "direct Mac USB; ATOMS3 5V to VM; empty secured motor with visible shaft-end mark",
+        "view": "looking directly at the output shaft end, same view for both tests",
+        "source": "user现场确认, combined with firmware ACK",
+        "running_output_duty": 30,
+        "stopped_output_duty": 0,
+        "log": "ui-v2-marked-direction-log.txt",
+        "screenshot": "ui-v2-direction-confirmed.png"
+      }
+    ],
+    "final_device_state": {
+      "state": "stopped",
+      "output_duty": 0,
+      "armed": false,
+      "emergency_locked": false
+    },
+    "scope_limit": "unloaded brief direction and stop only; no sustained/load/current/temperature testing"
+  }
+}

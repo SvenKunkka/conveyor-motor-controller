@@ -1,0 +1,57 @@
+{
+  "checked_at": "2026-10-19T17:02:04.826846+08:00",
+  "firmware": "conveyor-1.0.0",
+  "ui": "2.0.0",
+  "target": "ESP32-S3, 8MB DIO,80MHz",
+  "public_firmware_rebuilt": true,
+  "public_firmware_flashed_to_hardware": false,
+  "build": "PASS: pioarduino55.03.37 / Arduino3.3.7; image header+checksum valid",
+  "node": {
+    "pass": 23,
+    "fail": 0
+  },
+  "python": {
+    "pass": 11,
+    "fail": 0,
+    "relay": 4,
+    "explicit_target_guard": 7
+  },
+  "native_safety": "PASS with UBSan and100000 randomized transitions",
+  "privacy_scan": {
+    "home_paths": 0,
+    "original_device_serial": 0,
+    "known_secret_patterns": 0,
+    "full_flash_or_nvs_backups_included": false,
+    "raw_private_runtime_data_included": false
+  },
+  "same_as_hardware_tested_source": {
+    "firmware/include/MotorCore.h": "bea637054c7f9319775b407be5e8132f8314146f800e5e31161d1fe04058399b",
+    "firmware/src/main.cpp": "08ade460767aa6618cb21bca23c85e6c7e4290c20d3b1b74a00abbd009680bf4"
+  },
+  "physical_test_scope": "Earlier board firmware from same main.cpp/MotorCore.h: unloaded1kHz/30%, UI forward CW and reverse CCW then stop; user observed marked shaft. New public rebuilt images not reflashed.",
+  "excluded_local_only": [
+    "whole-device flash/NVS backup",
+    "original serial/flash logs",
+    "virtualenv",
+    "build cache",
+    "device MAC and home directory"
+  ],
+  "images": {
+    "boot_app0.bin": {
+      "bytes": 8192,
+      "sha256": "f94c5d786a7a8fab06ac5d10e33bf37711a6697636dc037559ea19cc410a17f0"
+    },
+    "bootloader.bin": {
+      "bytes": 18736,
+      "sha256": "4b4e25d1b03706735936abf2b57d3928584ce3dc2cd35b3af2135375be3b9a52"
+    },
+    "firmware.bin": {
+      "bytes": 351952,
+      "sha256": "2765a92fb2f110a5d5eef9b496238b914b7595b50b4d9dc8a623a6765bb45c25"
+    },
+    "partitions.bin": {
+      "bytes": 3072,
+      "sha256": "1d9cca96de0fe07ad7fc0648b9878ddecd9ce565e38b589ad20fea698ed4c80c"
+    }
+  }
+}

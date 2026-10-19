@@ -1,0 +1,123 @@
+{
+  "date": "2026-10-19",
+  "setup": {
+    "usb": "direct Mac USB",
+    "port": "/dev/cu.usbmodemXXXX",
+    "motor": "6V150RPM N20, empty and secured per user",
+    "vm": "ATOMS3 5V connected",
+    "independent_supply": false,
+    "multimeter": false
+  },
+  "observations": [
+    {
+      "frequency": 20000,
+      "duty": 30,
+      "duration_ms": 200,
+      "topology": "two hubs",
+      "user_result": "no movement, no sound"
+    },
+    {
+      "frequency": 20000,
+      "duty": 30,
+      "duration_ms": 200,
+      "topology": "direct",
+      "user_result": "no movement, no sound"
+    },
+    {
+      "frequency": 1000,
+      "duty": 30,
+      "duration_ms": 200,
+      "raw_direction": "forward",
+      "user_result": "shaft rotated"
+    },
+    {
+      "frequency": 1000,
+      "duty": 30,
+      "duration_ms": 200,
+      "raw_direction": "reverse",
+      "user_result": "shaft rotated; direction unclear"
+    },
+    {
+      "frequency": 1000,
+      "duty": 30,
+      "duration_ms": 300,
+      "control": "web",
+      "raw_direction": "forward",
+      "user_result": "shaft rotated CCW, then stopped"
+    },
+    {
+      "recorded_at": "2026-10-19T08:32:08.144282+00:00",
+      "stimulus": "calibrated web logical forward(CW), raw reverse 30%,1kHz,about300ms then STOP",
+      "observation": "未看清或没有动作",
+      "source": "user delayed answer",
+      "result": "physical direction and movement unconfirmed; firmware ACK is not physical proof",
+      "log": "web-calibrated-direction.jsonl"
+    },
+    {
+      "time": "2026-10-19T16:39:21+08:00",
+      "logical_direction": "forward",
+      "raw_direction": "reverse",
+      "user_observation": "顺时针转动，随后停止",
+      "running_ack": 2038,
+      "stop_ack": 2040,
+      "disarm_ack": 2043,
+      "result": "physical clockwise rotation and subsequent stop confirmed by user",
+      "frequency": 1000,
+      "duty": 30,
+      "duration_ms_approx": 300,
+      "control": "web UI2.0.0",
+      "setup": "direct Mac USB; ATOMS3 5V to VM; empty secured motor with visible shaft-end mark",
+      "view": "looking directly at the output shaft end, same view for both tests",
+      "source": "user现场确认, combined with firmware ACK",
+      "running_output_duty": 30,
+      "stopped_output_duty": 0,
+      "log": "ui-v2-marked-direction-log.txt",
+      "screenshot": "ui-v2-direction-confirmed.png"
+    },
+    {
+      "time": "2026-10-19T16:39:51+08:00",
+      "logical_direction": "reverse",
+      "raw_direction": "forward",
+      "user_observation": "是，逆时针转动后停止",
+      "running_ack": 2192,
+      "stop_ack": 2195,
+      "disarm_ack": 2197,
+      "result": "physical counterclockwise rotation and subsequent stop confirmed by user",
+      "frequency": 1000,
+      "duty": 30,
+      "duration_ms_approx": 300,
+      "control": "web UI2.0.0",
+      "setup": "direct Mac USB; ATOMS3 5V to VM; empty secured motor with visible shaft-end mark",
+      "view": "looking directly at the output shaft end, same view for both tests",
+      "source": "user现场确认, combined with firmware ACK",
+      "running_output_duty": 30,
+      "stopped_output_duty": 0,
+      "log": "ui-v2-marked-direction-log.txt",
+      "screenshot": "ui-v2-direction-confirmed.png"
+    }
+  ],
+  "working_settings_saved_to_nvs": true,
+  "nvs_reboot_readback": true,
+  "calibrated_ui": "forward(CW) sends raw reverse; reverse(CCW) sends raw forward",
+  "calibrated_cw_physical_confirmation": "confirmed: 2026-10-19 16:39:21 Asia/Shanghai, marked shaft viewed from output end; user confirms clockwise rotation then stop",
+  "sustained_or_loaded_operation": "not tested",
+  "electrical_measurements": "not performed",
+  "software_regressions": {
+    "node_tests": 18,
+    "python_tests": 4,
+    "native_core_ubsan": "PASS including100000random transitions"
+  },
+  "calibrated_ccw_physical_confirmation": "confirmed: 2026-10-19 16:39:51 Asia/Shanghai, same marked shaft view; user confirms counterclockwise rotation then stop",
+  "latest_device_state": {
+    "output_duty": 0,
+    "state": "stopped",
+    "armed": false,
+    "emergency_locked": false,
+    "after": "2026-10-19 16:39:51 Asia/Shanghai reverse test and disarm"
+  },
+  "direction_acceptance_evidence": [
+    "ui-v2-marked-direction-log.txt",
+    "ui-v2-direction-confirmed.png",
+    "physical-observations.jsonl"
+  ]
+}

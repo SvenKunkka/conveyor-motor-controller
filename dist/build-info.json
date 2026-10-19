@@ -1,0 +1,28 @@
+{
+  "firmware": "conveyor-1.0.0",
+  "target": "ESP32-S3, 8MB DIO,80MHz",
+  "rebuilt_for_public_release": true,
+  "flashed_to_reference_device": false,
+  "source_hashes": {
+    "firmware/include/MotorCore.h": "bea637054c7f9319775b407be5e8132f8314146f800e5e31161d1fe04058399b",
+    "firmware/src/main.cpp": "08ade460767aa6618cb21bca23c85e6c7e4290c20d3b1b74a00abbd009680bf4"
+  },
+  "images": {
+    "boot_app0.bin": {
+      "bytes": 8192,
+      "sha256": "f94c5d786a7a8fab06ac5d10e33bf37711a6697636dc037559ea19cc410a17f0"
+    },
+    "bootloader.bin": {
+      "bytes": 18736,
+      "sha256": "4b4e25d1b03706735936abf2b57d3928584ce3dc2cd35b3af2135375be3b9a52"
+    },
+    "firmware.bin": {
+      "bytes": 351952,
+      "sha256": "2765a92fb2f110a5d5eef9b496238b914b7595b50b4d9dc8a623a6765bb45c25"
+    },
+    "partitions.bin": {
+      "bytes": 3072,
+      "sha256": "1d9cca96de0fe07ad7fc0648b9878ddecd9ce565e38b589ad20fea698ed4c80c"
+    }
+  }
+}
