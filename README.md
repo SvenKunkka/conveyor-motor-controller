@@ -1,3 +1,7 @@
+<!-- SVENKUNKKA-README-NAV:BEGIN -->
+[中文项目说明](#project-overview-zh) · [English overview](#project-overview-en) · [维护者 X / Maintainer on X](https://x.com/Svenu1s5)
+<!-- SVENKUNKKA-README-NAV:END -->
+
 # Conveyor Motor Controller
 
 ATOMS3 Lite（ESP32-S3）+ 双 H 桥模块 + 6V N20 电机的 USB 控制系统。包含可编译固件、可烧录映像、桌面/窄屏网页、串口服务、测试与硬件记录。
@@ -90,3 +94,30 @@ USB motor controller for M5Stack ATOMS3 Lite (ESP32-S3), an H-bridge module sold
 The reference motor was observed rotating clockwise for UI Forward and counterclockwise for UI Reverse, then stopping, at 1kHz / 30% duty with direct Mac USB power and no load. This is a short no-load result, not a continuous power or stall rating. The physical driver IC remains unidentified. Public images are rebuilt from the same firmware source with local build paths removed and have not been reflashed to the reference board.
 
 Start `tools/start.sh` and open `http://127.0.0.1:8766`. Before flashing, isolate motor VM and select the exact device identity. Fresh NVS defaults to 20kHz; manually save the tested 1kHz / default30% / max30% profile before attempting a reference-motor test. Direction mapping is wiring-dependent. Third-party software retains its upstream terms; see `THIRD_PARTY.md`.
+
+
+---
+
+<!-- SVENKUNKKA-PROJECT-INFO:BEGIN -->
+
+<a id="project-overview-zh"></a>
+## 中文项目说明
+
+ATOMS3 Lite / ESP32-S3、双 H 桥和 N20 电机的 USB 控制系统，包含固件、网页、串口服务与接线记录，用于输送带键盘 DIY 的电机控制部分。
+
+**使用入口：** macOS 可用 `start.command`，或按 README 安装 `tools/requirements.txt` 后运行 `tools/start.sh`，访问本机 8766 端口；接线先读 [说明](docs/wiring.md)。
+
+**范围说明：** 这是开环 PWM 控制，占空比不等于转速；不包含键盘输入。公开重编映像未再次实机烧录，原有空载试验不代表带载、堵转或温升验收。
+
+<a id="project-overview-en"></a>
+## English project overview
+
+A USB motor-control system for ATOMS3 Lite / ESP32-S3, a dual H-bridge and an N20 motor, with firmware, a web interface, a serial service and wiring records for the motor portion of a conveyor-belt keyboard DIY project.
+
+**Getting started:** On macOS use `start.command`, or install `tools/requirements.txt` following the README and run `tools/start.sh`, then open local port 8766. Read the [wiring guide](docs/wiring.md) first.
+
+**Scope:** Control is open-loop PWM; duty cycle is not RPM. Keyboard input is not included. The publicly rebuilt images were not flashed again, and prior no-load trials do not establish loaded, stall or thermal performance.
+
+**仓库维护者 / Repository maintainer:** [SvenKunkka](https://github.com/SvenKunkka) · [X / Twitter](https://x.com/Svenu1s5)
+
+<!-- SVENKUNKKA-PROJECT-INFO:END -->
